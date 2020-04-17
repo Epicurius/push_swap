@@ -14,6 +14,6 @@ Press space to see the next move.
 ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
 ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./visualizer/visualizer $ARG
 
-5 values <12 moves
-100 values 670 moves +-20
-500 values 5500 moves +-100
+5 values <12 moves |
+100 values 670 moves +-20 |
+500 values 5500 moves +-100 |
