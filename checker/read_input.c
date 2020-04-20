@@ -131,7 +131,7 @@ int		read_input(int ac, char **av, t_stack *stc)
 	{
 		if (ft_cmd(a, b, stc, line) == -1)
 			return (-1);
-		//stc->debug > 1 ? print(a, b, stc, c) : 0;
+		stc->debug > 1 ? print(a, b, stc, c) : 0;
 		ft_strdel(&line);
 	}
 	free(line);
