@@ -11,8 +11,8 @@ Visualizes the individual moves taken to sort stack A.
 Press space to see the next move.
 
 ## Use
-ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG <br/>
-ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./visualizer/visualizer $ARG <br/>
+``ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG`` <br/>
+``ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./visualizer/visualizer $ARG`` <br/>
 
 5 values <12 moves <br/>
 100 values 670 moves +-20 <br/>
