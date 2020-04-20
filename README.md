@@ -8,7 +8,7 @@ Checker is a program that checks if the value given are correct and if push_swap
 
 ## Visulaizer (only for mac)
 Visualizes the individual moves taken to sort stack A.
-Press space to see the next move.
+Press space to see the next move and esc key to exit.
 
 ## Use
 ``ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG`` <br/>
@@ -17,3 +17,6 @@ Press space to see the next move.
 5 values <12 moves <br/>
 100 values 670 moves +-20 <br/>
 500 values 5500 moves +-100 <br/>
+<img src=/images/checker.png width="700">
+<img src=/images/visualizer.png width="700">
+
