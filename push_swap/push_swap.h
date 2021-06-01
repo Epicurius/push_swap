@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:18:32 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 11:25:23 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 16:56:43 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_stack
 	int				avg_a;
 	int				avg_b;
 	int				s;
+	int				write;
 }					t_stack;
 
 void				print(int *a, int *b, t_stack *stc, int ac);

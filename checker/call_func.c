@@ -6,24 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 19:26:01 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 15:39:36 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 17:02:21 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-void	ft_free(char **temp)
-{
-	int	x;
-
-	x = 0;
-	while (x <= 10)
-	{
-		ft_strdel(&temp[x]);
-		x++;
-	}
-	free(temp);
-}
 
 void	cordinator(int *a, int *b, t_stack *stc, int x)
 {
@@ -74,18 +61,18 @@ int	ft_cmd(int *a, int *b, t_stack *stc, char *line)
 
 int	ft_isnum(char *str)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (str[x])
 	{
 		if (str[x] == 45 && !(str[x + 1] > 48 && str[x + 1] <= 57))
-			return (-1);
+			return (0);
 		if ((str[x] < 48 || str[x] > 57) && str[x] != 32 && str[x] != 45)
-			return (-1);
+			return (0);
 		if ((str[x] > 48 && str[x] < 57) && str[x + 1] == 45)
-			return (-1);
+			return (0);
 		x++;
 	}
-	return (0);
+	return (1);
 }

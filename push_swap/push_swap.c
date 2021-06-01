@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:10:51 by nneronin          #+#    #+#             */
-/*   Updated: 2021/05/31 17:11:19 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 16:57:09 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av)
 		return (-1);
 	stc->size_b = 0;
 	stc->size_a = 0;
+	stc->write = 1;
 	if (read_input(ac, av, stc) == -1)
 		write(1, "Error\n", 6);
 	return (0);

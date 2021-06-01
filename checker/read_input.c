@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:36:44 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 12:27:10 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 17:03:34 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,115 +26,95 @@ int	find(char *str)
 	return (0);
 }
 
-int	count(int ac, char **av, int x, int num)
+int	validity(char *str, t_stack *stc)
 {
-	int	y;
+	int		i;
+	long	nb;
+	int		tmp;
 
-	while (x < ac)
-	{
-		if (ft_isnum(av[x]) == -1)
-			return (-1);
-		y = 0;
-		if (find(av[x]) == 1)
-		{
-			while (av[x][y])
-			{
-				while (av[x][y] && av[x][y] == ' ')
-					y++;
-				if (av[x][y] && av[x][y] != ' ')
-				{
-					num++;
-					while (av[x][y] && av[x][y] != ' ')
-						y++;
-				}
-			}
-		}
-		else
-			num++;
-		x++;
-	}
-	return (num);
-}
-
-int	validity(int *a, char *str, t_stack *stc)
-{
-	long	tmp;
-	int		x;
-
-	x = stc->i;
-	tmp = ft_atoi(str);
-	if (tmp == 0 && stc->zero == 1)
+	i = -1;
+	nb = ft_atoi(str);
+	if (nb > 2147483647 || nb < -2147483648)
 		return (1);
-	if (tmp == 0)
-		stc->zero = 1;
-	if (tmp > 2147483647 || tmp < -2147483648)
-		return (1);
-	while (x <= stc->size_a && tmp != 0)
+	while (++i < stc->size_a)
 	{
-		if (a[x] == (int)tmp)
+		if (stc->a[i] == (int)nb)
 			return (1);
-		x++;
 	}
-	a[stc->i] = (int)tmp;
-	stc->i -= 1;
+	stc->size_a += 1;
+	stc->a = ft_realloc(stc->a, sizeof(int) * stc->size_a);
+	i = -1;
+	while (++i < stc->size_a)
+	{
+		tmp = stc->a[i];
+		stc->a[i] = nb;
+		nb = tmp;
+	}
 	return (0);
 }
 
-int	get_nbr(int ac, char **av, int *a, t_stack *stc)
+int	count(int ac, char **av, t_stack *stc)
 {
+	int		i;
 	int		x;
-	int		y;
 	int		nb;
-	char	**temp;
+	char	**arr;
 
-	x = stc->debug - 1;
-	while (++x < ac)
+	i = stc->debug;
+	while (++i < ac)
 	{
-		if (find(av[x]))
+		if (!ft_isnum(av[i]))
+			return (0);
+		if (find(av[i]))
 		{
-			y = -1;
-			temp = ft_strsplit(av[x], ' ', &nb);
-			while (++y < nb)
+			arr = ft_strsplit(av[i], ' ', &nb);
+			x = -1;
+			while (++x < nb)
 			{
-				if (validity(a, temp[y], stc))
-					return (-1);
+				if (validity(arr[x], stc))
+					return (0);
 			}
+			free(arr);
 		}
-		else if (validity(a, av[x], stc))
-			return (-1);
+		else if (validity(av[i], stc))
+			return (0);
 	}
-	free(temp);
-	return (0);
+	return (1);
+}
+
+void	parse_options(t_stack *stc, char **av)
+{
+	stc->debug = 0;
+	if (ft_strequ(av[1], "-v"))
+	{
+		stc->debug += 1;
+		if (ft_strequ(av[2], "-s"))
+			stc->debug += 1;
+	}
+	else if (ft_strequ(av[1], "-s"))
+		ft_printf("{CYAN}[INFO]{RESET} -v flag needed for -s to work!\n");
 }
 
 int	read_input(int ac, char **av, t_stack *stc)
 {
-	char		*line;
-	int			*a;
-	int			*b;
-	int			c;
+	char	*line;
 
-	stc->debug = 1;
 	line = NULL;
-	if (ft_strcmp(av[1], "-v") == 0)
-		stc->debug = ft_strcmp(av[2], "-s") == 0 ? 3 : 2;
-	if ((c = count(ac, av, stc->debug, 0)) == -1)
-		return (-1);
-	a = (int *)malloc(sizeof(int) * c);
-	b = (int *)malloc(sizeof(int) * c);
-	stc->i = c - 1;
-	stc->size_a = c - 1;
-	if ((get_nbr(ac, av, a, stc)) == -1)
-		return (-1);
+	stc->moves = 0;
+	parse_options(stc, av);
+	if (!count(ac, av, stc))
+		return (0);
+	stc->b = malloc(sizeof(int) * stc->size_a);
+	stc->size_a -= 1;
+	stc->size_b = -1;
 	while ((get_next_line(0, &line)) > 0)
 	{
-		if (ft_cmd(a, b, stc, line) == -1)
+		if (ft_cmd(stc->a, stc->b, stc, line) == -1)
 			return (-1);
-		//stc->debug > 1 ? print(a, b, stc, c) : 0;
+		if (stc->debug >= 1)
+			print(stc->a, stc->b, stc, 1);
 		ft_strdel(&line);
 	}
 	free(line);
-	//stc->debug > 1 ? print(a, b, stc, c) : 0;
-	ft_sort(a, stc->size_a);
-	return (0);
+	return (1);
 }

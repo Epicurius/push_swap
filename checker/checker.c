@@ -6,53 +6,45 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:10:51 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 15:23:46 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 16:48:02 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "checker.h"
 
-int	ft_sort(int *a, int size)
+int	is_sorted(int *a, int size)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (x < size)
 	{
-		if (a[x] < a[x + 1] && x != size)
-		{
-			write(1, "KO\n", 3);
-			return (-1);
-		}
+		if (a[x] < a[x + 1])
+			return (0);
 		x++;
 	}
-	write(1, "OK\n", 3);
-	return (0);
+	return (1);
 }
 
 void	print(int *a, int *b, t_stack *stc, int ac)
 {
 	int	x;
 
-	x = ac - 1;
-	x = stc->size_a > stc->size_b ? stc->size_a : stc->size_b;
-	ft_putstr("A_stack:");
-	ft_putnbr(stc->size_a);
-	ft_putstr("	B_stack:");
-	ft_putnbr(stc->size_b);
-	ft_putstr("\n");
+	x = ft_max(stc->size_a, stc->size_b);
+	ft_printf("A_stack:%d\t\tB_Stack:%d\n", stc->size_a, stc->size_b);
 	while (x >= 0)
 	{
 		if (stc->size_a >= x)
 			ft_putnbr(a[x]);
-		ft_putstr("		");
+		ft_putstr("\t\t\t");
 		if (stc->size_b >= x)
 			ft_putnbr(b[x]);
 		write(1, "\n", 1);
 		x--;
 	}
-	stc->debug > 2 ? usleep(100000) : 0;
+	write(1, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", 34);
+	if (stc->debug == 2)
+		usleep(100000);
 }
 
 int	main(int ac, char **av)
@@ -60,21 +52,21 @@ int	main(int ac, char **av)
 	t_stack	*stc;
 
 	if (ac <= 1)
+		ft_printf("{RED}[ERROR]{RESET}\n");
+	stc = ft_memalloc(sizeof(t_stack));
+	if (!read_input(ac, av, stc))
+		ft_printf("{RED}[ERROR]{RESET}\n");
+	else
 	{
-		write(1, "Error\n", 6);
-		return (-1);
+		if (is_sorted(stc->a, stc->size_a))
+			ft_printf("{GREEN}[OK]{RESET} Moves:%d\n", stc->moves);
+		else
+			ft_printf("{ORANGE}[KO]{RESET}\n");
 	}
-	stc = (t_stack *)malloc(sizeof(t_stack));
-	stc->zero = 0;
-	stc->moves = 0;
-	stc->size_b = -1;
-	if (read_input(ac, av, stc) == -1)
-		write(1, "Error\n", 6);
-	if (stc->debug > 1)
-	{
-		write(1, "Moves: ", 7);
-		ft_putnbr(stc->moves);
-		write(1, "\n", 1);
-	}
+	if (stc->a)
+		free(stc->a);
+	if (stc->b)
+		free(stc->b);
+	free(stc);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:07:56 by nneronin          #+#    #+#              #
-#    Updated: 2021/05/31 11:08:32 by nneronin         ###   ########.fr        #
+#    Updated: 2021/06/01 16:04:43 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS = ./checker.c\
 OBJS			= $(SRCS:.c=.o)
 LIB_DIR			:= ../lib
 LIBFT			:= -I $(LIB_DIR)/libft $(LIB_DIR)/libft/libft.a
-LIBS			= $(LIBFT)
+LIBPF			:= -I $(LIB_DIR)/libpf $(LIB_DIR)/libpf/libpf.a
+LIBS			= $(LIBFT) $(LIBPF)
 CFLAGS			= -Wall -Wextra -Werror
 
 all: $(NAME)
