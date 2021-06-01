@@ -6,16 +6,15 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 19:26:01 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 17:33:40 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 15:39:36 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include "checker.h"
 
-void		ft_free(char **temp)
+void	ft_free(char **temp)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (x <= 10)
@@ -26,7 +25,7 @@ void		ft_free(char **temp)
 	free(temp);
 }
 
-void		cordinator(int *a, int *b, t_stack *stc, int x)
+void	cordinator(int *a, int *b, t_stack *stc, int x)
 {
 	if (x == 0)
 		sa(a, stc);
@@ -53,29 +52,27 @@ void		cordinator(int *a, int *b, t_stack *stc, int x)
 	stc->moves += 1;
 }
 
-int			ft_cmd(int *a, int *b, t_stack *stc, char *line)
+int	ft_cmd(int *a, int *b, t_stack *stc, char *line)
 {
 	int		x;
 	char	**temp;
 
-	x = 0;
-	temp = ft_strsplit("sa sb ss pa pb ra rb rr rra rrb rrr", ' ');
-	while (x <= 10)
+	x = -1;
+	temp = ft_strsplit("sa sb ss pa pb ra rb rr rra rrb rrr", ' ', NULL);
+	while (++x <= 10)
 	{
 		if (ft_strcmp(temp[x], line) == 0)
 		{
 			cordinator(a, b, stc, x);
-			ft_free(temp);
+			free(temp);
 			return (x);
 		}
-		x++;
 	}
-	x = 0;
-	ft_free(temp);
+	free(temp);
 	return (-1);
 }
 
-int			ft_isnum(char *str)
+int	ft_isnum(char *str)
 {
 	int x;
 

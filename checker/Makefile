@@ -3,12 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsalmi <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/07 14:25:24 by jsalmi            #+#    #+#              #
-#    Updated: 2020/03/05 15:45:07 by nneronin         ###   ########.fr        #
+#    Created: 2021/05/31 11:07:56 by nneronin          #+#    #+#              #
+#    Updated: 2021/05/31 11:08:32 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED				:= "\e[0;31m"
+GREEN			:= "\e[0;32m"
+YELLOW			:= "\e[0;33m"
+BLUE			:= "\e[0;34m"
+MAGENTA			:= "\e[0;35m"
+CYAN			:= "\e[0;36m"
+RESET			:= "\e[0m"
 
 NAME = checker
 SRCS = ./checker.c\
@@ -18,20 +26,26 @@ SRCS = ./checker.c\
 	   ./moves/p_moves.c\
 	   ./moves/r_moves.c\
 	   ./moves/rr_moves.c
-OBJS = $(SRCS:.c=.o)
-INCLUDES = ./libft/libft.a
-FLAGS = -Wall -Wextra -Werror
+
+OBJS			= $(SRCS:.c=.o)
+LIB_DIR			:= ../lib
+LIBFT			:= -I $(LIB_DIR)/libft $(LIB_DIR)/libft/libft.a
+LIBS			= $(LIBFT)
+CFLAGS			= -Wall -Wextra -Werror
 
 all: $(NAME)
+	@printf $(GREEN)"$(NAME) ready!\n"$(RESET)
 
 $(NAME):
-	gcc -o $(NAME) $(FLAGS) $(SRCS) $(INCLUDES)
+	@printf $(CYAN)"[INFO]	Compiling $(NAME)\n"$(RESET)
+	@gcc -o $(NAME) $(SRCS) $(LIBS) #$(CFLAGS)
 
 clean:
-	/bin/rm -f $(OBJS)
+	@/bin/rm -f $(OBJS)
+	@printf $(CYAN)"[INFO]	$(NAME) cleaned\n"$(RESET)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

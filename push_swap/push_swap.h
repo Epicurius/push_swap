@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:18:32 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 11:35:47 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 11:25:23 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-# include "./libft/libft.h"
+# include "libft.h"
+# include "libpf.h"
 
-typedef struct		s_stack
+typedef struct s_stack
 {
+	int				*a;
+	int				*b;
 	int				size_a;
 	int				size_b;
-	int				i;
+	int				avg_a;
+	int				avg_b;
 	int				s;
-	int				zero;
 }					t_stack;
 
 void				print(int *a, int *b, t_stack *stc, int ac);
-int					ft_sort(int *a, int size);
+int					is_sorted(int *a, int size);
 int					read_input(int ac, char **av, t_stack *stc);
 
-int					sort_algo(int *a, int *b, t_stack *stc);
+void				sort_algo(int *a, int *b, t_stack *stc);
 int					sort_short(int *a, int *b, t_stack *stc, int s);
 void				largest_to_a(int *a, int *b, t_stack *stc);
 void				smallest_to_a(int *a, int *b, t_stack *stc);

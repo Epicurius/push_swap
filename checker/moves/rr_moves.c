@@ -6,16 +6,16 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:12:21 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/05 15:45:37 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/05/31 11:04:08 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker.h"
 
-void		ra(int *a, t_stack *stc)
+void	ra(int *a, t_stack *stc)
 {
-	int y;
-	int tmp;
+	int	y;
+	int	tmp;
 
 	y = stc->size_a;
 	tmp = a[y];
@@ -24,10 +24,10 @@ void		ra(int *a, t_stack *stc)
 	a[0] = tmp;
 }
 
-void		rb(int *b, t_stack *stc)
+void	rb(int *b, t_stack *stc)
 {
-	int y;
-	int tmp;
+	int	y;
+	int	tmp;
 
 	y = stc->size_b;
 	tmp = b[y];
@@ -36,7 +36,7 @@ void		rb(int *b, t_stack *stc)
 	b[0] = tmp;
 }
 
-void		rrr(int *a, int *b, t_stack *stc)
+void	rrr(int *a, int *b, t_stack *stc)
 {
 	if (stc->size_a > 0)
 		rra(a, stc);

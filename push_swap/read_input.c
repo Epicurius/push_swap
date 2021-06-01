@@ -6,36 +6,33 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:36:44 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 17:32:29 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 12:18:24 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "./libft/libft.h"
 #include "push_swap.h"
-#include "./libft/get_next_line.h"
 
-int		ft_isnum(char *str)
+int	ft_isnum(char *str)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (str[x])
 	{
 		if (str[x] == 45 && !(str[x + 1] > 48 && str[x + 1] <= 57))
-			return (-1);
+			return (0);
 		if ((str[x] < 48 || str[x] > 57) && str[x] != 32 && str[x] != 45)
-			return (-1);
+			return (0);
 		if ((str[x] > 48 && str[x] < 57) && str[x + 1] == 45)
-			return (-1);
+			return (0);
 		x++;
 	}
-	return (0);
+	return (1);
 }
 
-int		find(char *str)
+int	find(char *str)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (str[x] != '\0')
@@ -47,109 +44,84 @@ int		find(char *str)
 	return (0);
 }
 
-int		count(int ac, char **av, int x, int num)
+int	validity(char *str, t_stack *stc)
 {
-	int y;
+	int		i;
+	long	nb;
+	int		tmp;
 
-	while (x < ac)
-	{
-		if (ft_isnum(av[x]) == -1)
-			return (-1);
-		y = 0;
-		if (find(av[x]) == 1)
-			while (av[x][y])
-			{
-				while (av[x][y] && av[x][y] == ' ')
-					y++;
-				if (av[x][y] && av[x][y] != ' ')
-				{
-					num++;
-					while (av[x][y] && av[x][y] != ' ')
-						y++;
-				}
-			}
-		else
-			num++;
-		x++;
-	}
-	return (num);
-}
-
-int		validity(int *a, char *str, t_stack *stc)
-{
-	long	tmp;
-	int		x;
-
-	x = stc->i;
-	tmp = ft_atoi(str);
-	if (tmp == 0 && stc->zero == 1)
+	i = -1;
+	nb = ft_atoi(str);
+	if (nb > 2147483647 || nb < -2147483648)
 		return (1);
-	if (tmp == 0)
-		stc->zero = 1;
-	if (tmp > 2147483647 || tmp < -2147483648)
-		return (1);
-	while (x <= stc->size_a && tmp != 0)
+	while (++i < stc->size_a)
 	{
-		if (a[x] == (int)tmp)
+		if (stc->a[i] == (int)nb)
 			return (1);
-		x++;
 	}
-	a[stc->i] = (int)tmp;
-	stc->i -= 1;
-	return (0);
-}
-
-int		get_nbr(int ac, char **av, int *a, t_stack *stc)
-{
-	int		x;
-	int		y;
-	char	**temp;
-
-	x = 1;
-	while (x < ac)
+	stc->size_a += 1;
+	stc->a = ft_realloc(stc->a, sizeof(int) * stc->size_a);
+	i = -1;
+	while (++i < stc->size_a)
 	{
-		if (find(av[x]) == 1)
-		{
-			y = 0;
-			temp = ft_strsplit(av[x], ' ');
-			while (temp[y] != NULL)
-			{
-				if (validity(a, temp[y], stc) == 1)
-					return (-1);
-				y += 1;
-			}
-		}
-		else if (validity(a, av[x], stc) == 1)
-			return (-1);
-		x += 1;
+		tmp = stc->a[i];
+		stc->a[i] = nb;
+		nb = tmp;
 	}
 	return (0);
 }
 
-int		read_input(int ac, char **av, t_stack *stc)
+int	count(int ac, char **av, t_stack *stc)
 {
-	int		*a;
-	int		*b;
-	int		c;
+	int		i;
+	int		x;
+	int		nb;
+	char	**arr;
 
-	if ((c = count(ac, av, 1, 0)) == -1)
+	i = 0;
+	while (++i < ac)
+	{
+		if (!ft_isnum(av[i]))
+			return (0);
+		if (find(av[i]))
+		{
+			arr = ft_strsplit(av[i], ' ', &nb);
+			x = -1;
+			while (++x < nb)
+			{
+				if (validity(arr[x], stc))
+					return (0);
+			 }
+			free(arr);
+		}
+		else if (validity(av[i], stc))
+				return (0);
+	}
+	return (1);
+}
+
+int	read_input(int ac, char **av, t_stack *stc)
+{
+	if (!count(ac, av, stc))
 		return (-1);
-	a = (int *)malloc(sizeof(int) * c);
-	b = (int *)malloc(sizeof(int) * c);
-	stc->i = c - 1;
-	stc->size_a = c - 1;
-	stc->size_b = -1;
-	if ((get_nbr(ac, av, a, stc)) == -1)
-		return (-1);
+	stc->b = malloc(sizeof(int) * stc->size_a);
 	stc->s = -1;
-	if (ft_sort(a, stc->size_a) == 0)
+	stc->size_a -= 1;
+	stc->size_b = -1;
+	if (is_sorted(stc->a, stc->size_a))
 		return (0);
-	if (c <= 10)
-		sort_short(a, b, stc, 0);
+	if (stc->size_a <= 10)
+		sort_short(stc->a, stc->b, stc, 0);
 	else
 	{
-		while (is_sort(a, stc) == -1)
-			stc->s = sort_algo(a, b, stc);
+		while (!is_sorted(stc->a, stc->size_a))
+		{
+			sort_algo(stc->a, stc->b, stc);
+			if (stc->size_a == -1)
+				stc->s = stc->size_a;
+			else
+				stc->s = find_min_max(stc->a, stc->size_a, 's');
+		}
 	}
 	return (0);
 }

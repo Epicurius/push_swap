@@ -6,15 +6,15 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:41:43 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/05 15:54:15 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/05/31 11:04:28 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker.h"
 
-void		sa(int *a, t_stack *stc)
+void	sa(int *a, t_stack *stc)
 {
-	int tmp;
+	int	tmp;
 
 	if (stc->size_a < 1)
 		return ;
@@ -23,9 +23,9 @@ void		sa(int *a, t_stack *stc)
 	a[stc->size_a - 1] = tmp;
 }
 
-void		sb(int *b, t_stack *stc)
+void	sb(int *b, t_stack *stc)
 {
-	int tmp;
+	int	tmp;
 
 	if (stc->size_b < 1)
 		return ;
@@ -34,7 +34,7 @@ void		sb(int *b, t_stack *stc)
 	b[stc->size_b - 1] = tmp;
 }
 
-void		ss(int *a, int *b, t_stack *stc)
+void	ss(int *a, int *b, t_stack *stc)
 {
 	if (stc->size_a > 0)
 		sa(a, stc);

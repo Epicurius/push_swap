@@ -3,12 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsalmi <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/07 14:25:24 by jsalmi            #+#    #+#              #
-#    Updated: 2020/03/05 19:36:21 by nneronin         ###   ########.fr        #
+#    Created: 2021/05/31 10:38:28 by nneronin          #+#    #+#              #
+#    Updated: 2021/05/31 11:44:58 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED				:= "\e[0;31m"
+GREEN			:= "\e[0;32m"
+YELLOW			:= "\e[0;33m"
+BLUE			:= "\e[0;34m"
+MAGENTA			:= "\e[0;35m"
+CYAN			:= "\e[0;36m"
+RESET			:= "\e[0m"
 
 NAME = push_swap
 SRCS = ./push_swap.c\
@@ -21,20 +29,27 @@ SRCS = ./push_swap.c\
 	   ./help_func.c\
 	   ./find_and_move.c\
 	   ./short_algo.c
-OBJS = $(SRCS:.c=.o)
-INCLUDES = ./libft/libft.a
-FLAGS = -Wall -Wextra -Werror
+
+OBJS			= $(SRCS:.c=.o)
+LIB_DIR			:= ../lib
+LIBFT			:= -I $(LIB_DIR)/libft $(LIB_DIR)/libft/libft.a
+LIBPF			:= -I $(LIB_DIR)/libpf $(LIB_DIR)/libpf/libpf.a
+LIBS			= $(LIBFT) $(LIBPF)
+CFLAGS			= -Wall -Wextra -Werror
 
 all: $(NAME)
+	@printf $(GREEN)"$(NAME) ready!\n"$(RESET)
 
 $(NAME):
-	gcc -o $(NAME) $(SRCS) $(INCLUDES)
+	@printf $(CYAN)"[INFO]	Compiling $(NAME)\n"$(RESET)
+	@gcc -o $(NAME) $(SRCS) $(LIBS) #$(CFLAGS)
 
 clean:
-	/bin/rm -f $(OBJS)
+	@/bin/rm -f $(OBJS)
+	@printf $(CYAN)"[INFO]	$(NAME) cleaned\n"$(RESET)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

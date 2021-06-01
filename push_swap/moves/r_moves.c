@@ -6,17 +6,17 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:13:21 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/05 16:04:52 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/05/31 10:14:06 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void		rra(int *a, t_stack *stc, int p)
+void	rra(int *a, t_stack *stc, int p)
 {
-	int x;
-	int y;
-	int tmp;
+	int	x;
+	int	y;
+	int	tmp;
 
 	x = -1;
 	y = stc->size_a;
@@ -28,11 +28,11 @@ void		rra(int *a, t_stack *stc, int p)
 		write(1, "rra\n", 4);
 }
 
-void		rrb(int *b, t_stack *stc, int p)
+void	rrb(int *b, t_stack *stc, int p)
 {
-	int x;
-	int y;
-	int tmp;
+	int	x;
+	int	y;
+	int	tmp;
 
 	x = -1;
 	y = stc->size_b;
@@ -44,7 +44,7 @@ void		rrb(int *b, t_stack *stc, int p)
 		write(1, "rrb\n", 4);
 }
 
-void		rrr(int *a, int *b, t_stack *stc)
+void	rrr(int *a, int *b, t_stack *stc)
 {
 	if (stc->size_a > 0)
 		rra(a, stc, 0);

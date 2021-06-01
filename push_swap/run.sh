@@ -1,0 +1,11 @@
+ARG=`ruby -e "puts (1..10).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..200).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..300).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..400).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..600).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..700).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..301).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..302).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG
+ARG=`ruby -e "puts (1..303).to_a.shuffle.join(' ')"` ; ./push_swap $ARG | ../checker/checker -v $ARG

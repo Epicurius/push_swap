@@ -6,18 +6,15 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:36:44 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 15:58:07 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 12:27:10 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "./libft/libft.h"
 #include "checker.h"
-#include "./libft/get_next_line.h"
 
-int		find(char *str)
+int	find(char *str)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (str[x] != '\0')
@@ -29,9 +26,9 @@ int		find(char *str)
 	return (0);
 }
 
-int		count(int ac, char **av, int x, int num)
+int	count(int ac, char **av, int x, int num)
 {
-	int y;
+	int	y;
 
 	while (x < ac)
 	{
@@ -39,6 +36,7 @@ int		count(int ac, char **av, int x, int num)
 			return (-1);
 		y = 0;
 		if (find(av[x]) == 1)
+		{
 			while (av[x][y])
 			{
 				while (av[x][y] && av[x][y] == ' ')
@@ -50,6 +48,7 @@ int		count(int ac, char **av, int x, int num)
 						y++;
 				}
 			}
+		}
 		else
 			num++;
 		x++;
@@ -57,7 +56,7 @@ int		count(int ac, char **av, int x, int num)
 	return (num);
 }
 
-int		validity(int *a, char *str, t_stack *stc)
+int	validity(int *a, char *str, t_stack *stc)
 {
 	long	tmp;
 	int		x;
@@ -81,34 +80,34 @@ int		validity(int *a, char *str, t_stack *stc)
 	return (0);
 }
 
-int		get_nbr(int ac, char **av, int *a, t_stack *stc)
+int	get_nbr(int ac, char **av, int *a, t_stack *stc)
 {
 	int		x;
 	int		y;
+	int		nb;
 	char	**temp;
 
-	x = stc->debug;
-	while (x < ac)
+	x = stc->debug - 1;
+	while (++x < ac)
 	{
-		if (find(av[x]) == 1)
+		if (find(av[x]))
 		{
-			y = 0;
-			temp = ft_strsplit(av[x], ' ');
-			while (temp[y] != NULL)
+			y = -1;
+			temp = ft_strsplit(av[x], ' ', &nb);
+			while (++y < nb)
 			{
-				if (validity(a, temp[y], stc) == 1)
+				if (validity(a, temp[y], stc))
 					return (-1);
-				y += 1;
 			}
 		}
-		else if (validity(a, av[x], stc) == 1)
+		else if (validity(a, av[x], stc))
 			return (-1);
-		x += 1;
 	}
+	free(temp);
 	return (0);
 }
 
-int		read_input(int ac, char **av, t_stack *stc)
+int	read_input(int ac, char **av, t_stack *stc)
 {
 	char		*line;
 	int			*a;
@@ -131,11 +130,11 @@ int		read_input(int ac, char **av, t_stack *stc)
 	{
 		if (ft_cmd(a, b, stc, line) == -1)
 			return (-1);
-		stc->debug > 1 ? print(a, b, stc, c) : 0;
+		//stc->debug > 1 ? print(a, b, stc, c) : 0;
 		ft_strdel(&line);
 	}
 	free(line);
-	stc->debug > 1 ? print(a, b, stc, c) : 0;
+	//stc->debug > 1 ? print(a, b, stc, c) : 0;
 	ft_sort(a, stc->size_a);
 	return (0);
 }

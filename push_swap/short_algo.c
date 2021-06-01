@@ -6,29 +6,32 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:54:11 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 12:47:33 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/05/31 16:24:03 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_sort(int *a, int size)
+int	is_sorted(int *a, int size)
 {
-	int x;
+	int	x;
 
-	x = 0;	
+	x = 0;
 	while (x < size)
 	{
-		if (a[x] < a[x + 1] && x != size)
-			return (-1);
+		if (a[x] < a[x + 1])
+		{
+			//ft_dprintf(0, "%d %d\n", a[x], a[x + 1]);
+			return (0);
+		}
 		x++;
 	}
-	return (0);
+	return (1);
 }
 
 int	sort_short(int *a, int *b, t_stack *stc, int s)
 {
-	int sml;
+	int	sml;
 
 	while (stc->size_a > 2)
 	{

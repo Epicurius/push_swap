@@ -6,14 +6,14 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:18:32 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/05 18:40:01 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/05/31 11:28:54 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "./libft/libft.h"
+# include "libft.h"
 
 typedef struct		s_stack
 {

@@ -17,8 +17,8 @@
 # include "./libft/libft.h"
 # define RGB 1
 # define START_SIZE 1
-# define WIN_WIDTH 900
-# define WIN_HIGHT 500
+# define WIN_WIDTH 1200
+# define WIN_HIGHT 1300
 
 typedef struct		s_stack
 {

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cheker.c                                           :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:10:51 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/07 15:59:00 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/01 15:23:46 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
+#include "libft.h"
 #include "checker.h"
 
-int		ft_sort(int *a, int size)
+int	ft_sort(int *a, int size)
 {
 	int x;
 
@@ -31,11 +31,11 @@ int		ft_sort(int *a, int size)
 	return (0);
 }
 
-void		print(int *a, int *b, t_stack *stc, int ac)
+void	print(int *a, int *b, t_stack *stc, int ac)
 {
-	int x;
+	int	x;
 
-	x = ac - 1; //fix!
+	x = ac - 1;
 	x = stc->size_a > stc->size_b ? stc->size_a : stc->size_b;
 	ft_putstr("A_stack:");
 	ft_putnbr(stc->size_a);
@@ -55,9 +55,9 @@ void		print(int *a, int *b, t_stack *stc, int ac)
 	stc->debug > 2 ? usleep(100000) : 0;
 }
 
-int			main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack		*stc;
+	t_stack	*stc;
 
 	if (ac <= 1)
 	{
@@ -74,6 +74,7 @@ int			main(int ac, char **av)
 	{
 		write(1, "Moves: ", 7);
 		ft_putnbr(stc->moves);
+		write(1, "\n", 1);
 	}
 	return (0);
 }
