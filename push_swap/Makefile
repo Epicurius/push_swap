@@ -6,7 +6,7 @@
 #    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 10:38:28 by nneronin          #+#    #+#              #
-#    Updated: 2021/06/01 17:00:00 by nneronin         ###   ########.fr        #
+#    Updated: 2021/06/04 16:34:58 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = ./push_swap.c\
 	   ./moves/rr_moves.c\
 	   ./help_func.c\
 	   ./find_and_move.c\
+	   ./sort_func.c\
 	   ./short_algo.c
 
 OBJS			= $(SRCS:.c=.o)
@@ -37,8 +38,13 @@ LIBPF			:= -I $(LIB_DIR)/libpf $(LIB_DIR)/libpf/libpf.a
 LIBS			= $(LIBFT) $(LIBPF)
 CFLAGS			= -Wall -Wextra -Werror
 
-all: $(NAME)
+all: libs $(NAME)
 	@printf $(GREEN)"$(NAME) ready!\n"$(RESET)
+
+libs: $(LIB_DIR)
+	@make -C ../lib/libft
+	@make -C ../lib/libpf
+	@printf $(CYAN)"[INFO]	All libs compiled.\n"$(RESET)
 
 $(NAME):
 	@printf $(CYAN)"[INFO]	Compiling $(NAME)\n"$(RESET)

@@ -6,7 +6,7 @@
 #    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:07:56 by nneronin          #+#    #+#              #
-#    Updated: 2021/06/01 16:04:43 by nneronin         ###   ########.fr        #
+#    Updated: 2021/06/04 16:33:54 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,13 @@ LIBPF			:= -I $(LIB_DIR)/libpf $(LIB_DIR)/libpf/libpf.a
 LIBS			= $(LIBFT) $(LIBPF)
 CFLAGS			= -Wall -Wextra -Werror
 
-all: $(NAME)
+all: libs $(NAME)
 	@printf $(GREEN)"$(NAME) ready!\n"$(RESET)
+
+libs: $(LIB_DIR)
+	@make -C ../lib/libft
+	@make -C ../lib/libpf
+	@printf $(CYAN)"[INFO]	All libs compiled.\n"$(RESET)
 
 $(NAME):
 	@printf $(CYAN)"[INFO]	Compiling $(NAME)\n"$(RESET)

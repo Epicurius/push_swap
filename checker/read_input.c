@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:36:44 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 17:03:34 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:07:49 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	validity(char *str, t_stack *stc)
 	int		tmp;
 
 	i = -1;
-	nb = ft_atoi(str);
+	nb = ft_latoi(str);
 	if (nb > 2147483647 || nb < -2147483648)
 		return (1);
 	while (++i < stc->size_a)
@@ -110,7 +110,10 @@ int	read_input(int ac, char **av, t_stack *stc)
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (ft_cmd(stc->a, stc->b, stc, line) == -1)
-			return (-1);
+		{
+			free(line);
+			return (0);
+		}
 		if (stc->debug >= 1)
 			print(stc->a, stc->b, stc, 1);
 		ft_strdel(&line);

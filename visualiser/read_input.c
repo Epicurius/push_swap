@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/01 17:07:40 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 20:36:21 by nneronin         ###   ########.fr       */
+/*   Created: 2021/06/04 16:19:15 by nneronin          #+#    #+#             */
+/*   Updated: 2021/06/04 17:07:56 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualizer.h"
-
-int	ft_isnum(char *str)
-{
-	int	x;
-
-	x = 0;
-	while (str[x])
-	{
-		if (str[x] == 45 && !(str[x + 1] > 48 && str[x + 1] <= 57))
-			return (0);
-		if ((str[x] < 48 || str[x] > 57) && str[x] != 32 && str[x] != 45)
-			return (0);
-		if ((str[x] > 48 && str[x] < 57) && str[x + 1] == 45)
-			return (0);
-		x++;
-	}
-	return (1);
-}
+#include "visualiser.h"
 
 int	find(char *str)
 {
@@ -51,7 +33,7 @@ int	validity(char *str, t_stack *stc)
 	int		tmp;
 
 	i = -1;
-	nb = ft_atoi(str);
+	nb = ft_latoi(str);
 	if (nb > 2147483647 || nb < -2147483648)
 		return (1);
 	while (++i < stc->size_a)
@@ -102,7 +84,7 @@ int	count(int ac, char **av, t_stack *stc)
 	return (1);
 }
 
-int			ft_cmd(t_stack *stc, char *line)
+int	ft_cmd(t_stack *stc, char *line)
 {
 	int		x;
 	char	**temp;
@@ -132,6 +114,8 @@ int	read_input(int ac, char **av, t_stack *stc)
 	stc->moves = 0;
 	if (!count(ac, av, stc))
 		return (0);
+	if (stc->size_a > 710)
+		error_msg("Stack to large!");
 	stc->b = malloc(sizeof(int) * stc->size_a);
 	stc->size_a -= 1;
 	stc->size_b = -1;
@@ -143,39 +127,4 @@ int	read_input(int ac, char **av, t_stack *stc)
 	}
 	free(line);
 	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	t_stack	*stc;
-	SDL_Event event;
-
-	if (ac <= 1)
-		error_msg("No args passed.");
-	stc = ft_memalloc(sizeof(t_stack));
-	stc->w = 0;
-	if (!read_input(ac, av, stc))
-		error_msg("On input.");
-	stc->w = ft_max(480, stc->w * 2 + 1);
-	stc->h = ft_max(720, stc->size_a * 2 + 10);
-	stc->thickness = 1;
-	if (stc->h == 720)
-		stc->thickness = floor((720 - stc->size_a) / stc->size_a);
-	init_sdl(stc);
-	SDL_FillRect(stc->surface, NULL, 0xFF363636);
-	stc->i = -1;
-	stc->pause = 1;
-	draw(stc);
-	while (!stc->quit)
-	{
-		while (SDL_PollEvent(&event))
-			keys(stc, &event);
-		if (!stc->pause && stc->i < stc->moves - 1)
-			move_forward(stc);
-		SDL_FillRect(stc->surface, NULL, 0xFF363636);
-		draw(stc);
-		update_screen(stc);
-	}
-	free_vis(stc);
-	return (0);
 }

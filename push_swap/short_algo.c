@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:54:11 by nneronin          #+#    #+#             */
-/*   Updated: 2021/05/31 16:24:03 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:53:16 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	is_sorted(int *a, int size)
 	while (x < size)
 	{
 		if (a[x] < a[x + 1])
-		{
-			//ft_dprintf(0, "%d %d\n", a[x], a[x + 1]);
 			return (0);
-		}
 		x++;
 	}
 	return (1);

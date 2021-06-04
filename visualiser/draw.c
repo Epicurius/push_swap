@@ -6,16 +6,16 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:40:20 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 20:04:59 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 16:18:54 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualizer.h"
+#include "visualiser.h"
 
 int	color(int i, float amount)
 {
-	SDL_Color s;
-	SDL_Color t;
+	SDL_Color	s;
+	SDL_Color	t;
 
 	amount /= 3;
 	if (i >= 0 && i < amount)
@@ -30,20 +30,20 @@ int	color(int i, float amount)
 		t = (SDL_Color){0, 0, 255};
 	}
 	else
-	{ 
+	{
 		i -= amount * 2;
 		s = (SDL_Color){0, 0, 255};
 		t = (SDL_Color){255, 0, 0};
 	}
 	return ((s.r + (((t.r - s.r) * i) / (int)amount) & 0xFF) << 16
 		| (s.g + (((t.g - s.g) * i) / (int)amount) & 0xFF) << 8
-		| (s.b + (((t.b - s.b) * i) / (int)amount) & 0xFF));		
+		| (s.b + (((t.b - s.b) * i) / (int)amount) & 0xFF));
 }
 
 void	draw_line(SDL_Surface *surf, SDL_Rect r, int total)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 	int	clr;
 
 	clr = color(r.w, total);
@@ -52,7 +52,7 @@ void	draw_line(SDL_Surface *surf, SDL_Rect r, int total)
 	{
 		x = r.x - 1;
 		while (++x < r.w + r.x)
-			((Uint32*)surf->pixels)[y * surf->w + x] = clr;
+			((Uint32 *)surf->pixels)[y * surf->w + x] = clr;
 	}
 }
 

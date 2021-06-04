@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:25:31 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 15:28:00 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:53:02 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	average(int *i, int size, int x)
 {
-	int nbr;
-	int tmp;
+	int	nbr;
+	int	tmp;
 
 	nbr = 0;
 	tmp = 0;

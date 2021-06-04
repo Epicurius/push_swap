@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:36:44 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 12:18:24 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:52:38 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	validity(char *str, t_stack *stc)
 	int		tmp;
 
 	i = -1;
-	nb = ft_atoi(str);
+	nb = ft_latoi(str);
 	if (nb > 2147483647 || nb < -2147483648)
-		return (1);
+		return (0);
 	while (++i < stc->size_a)
 	{
 		if (stc->a[i] == (int)nb)
-			return (1);
+			return (0);
 	}
 	stc->size_a += 1;
 	stc->a = ft_realloc(stc->a, sizeof(int) * stc->size_a);
@@ -68,7 +68,7 @@ int	validity(char *str, t_stack *stc)
 		stc->a[i] = nb;
 		nb = tmp;
 	}
-	return (0);
+	return (1);
 }
 
 int	count(int ac, char **av, t_stack *stc)
@@ -88,14 +88,14 @@ int	count(int ac, char **av, t_stack *stc)
 			arr = ft_strsplit(av[i], ' ', &nb);
 			x = -1;
 			while (++x < nb)
-			{
-				if (validity(arr[x], stc))
-					return (0);
-			 }
+				if (!validity(arr[x], stc))
+					break ;
 			free(arr);
-		}
-		else if (validity(av[i], stc))
+			if (x < nb)
 				return (0);
+		}
+		else if (!validity(av[i], stc))
+			return (0);
 	}
 	return (1);
 }

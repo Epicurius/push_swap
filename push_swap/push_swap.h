@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:18:32 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 16:56:43 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 16:00:30 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_stack
 void				print(int *a, int *b, t_stack *stc, int ac);
 int					is_sorted(int *a, int size);
 int					read_input(int ac, char **av, t_stack *stc);
-
 void				sort_algo(int *a, int *b, t_stack *stc);
 int					sort_short(int *a, int *b, t_stack *stc, int s);
 void				largest_to_a(int *a, int *b, t_stack *stc);
@@ -43,7 +42,11 @@ int					closest(int size, int x);
 int					is_s(int *i, int nbr, int size, int x);
 int					is_b(int *i, int nbr, int size, int x);
 int					is_sort(int *a, t_stack *stc);
-
+void				push_all_a(int *a, int *b, t_stack *stc);
+void				push_large_a(int *a, int *b, t_stack *stc);
+void				push_half_b(int *a, int *b, t_stack *stc);
+void				push_remain_b(int *a, int *b, t_stack *stc);
+void				push_reset(int *a, int *b, t_stack *stc);
 void				sa(int *a, t_stack *stc, int p);
 void				sb(int *b, t_stack *stc, int p);
 void				ss(int *a, int *b, t_stack *stc);

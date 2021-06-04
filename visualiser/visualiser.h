@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   visualiser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:18:32 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 20:35:22 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 16:21:23 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VISUALIZER_H
-# define VISUALIZER_H
+#ifndef VISUALISER_H
+# define VISUALISER_H
 
 # include "libft.h"
 # include "libpf.h"
 # include "SDL.h"
 # include "SDL_ttf.h"
 
-typedef struct		s_stack
+typedef struct s_stack
 {
 	SDL_Surface		*surface;
 	SDL_Window		*win;
@@ -38,15 +38,16 @@ typedef struct		s_stack
 	int				i;
 }					t_stack;
 
-void	update_screen(t_stack *stc);
-void	keys(t_stack *stc, SDL_Event *event);
-void	init_sdl(t_stack *stc);
-void	free_vis(t_stack *stc);
-void	error_msg(const char *restrict format, ...);
-void	draw(t_stack *stc);
-void	move_forward(t_stack *stc);
-void	move_reverse(t_stack *stc);
-
+void				update_screen(t_stack *stc);
+void				keys(t_stack *stc, SDL_Event *event);
+void				init_sdl(t_stack *stc);
+void				free_vis(t_stack *stc);
+void				error_msg(const char *restrict format, ...);
+int					ft_isnum(char *str);
+int					read_input(int ac, char **av, t_stack *stc);
+void				draw(t_stack *stc);
+void				move_forward(t_stack *stc);
+void				move_reverse(t_stack *stc);
 void				sa(t_stack *stc);
 void				sb(t_stack *stc);
 void				ss(t_stack *stc);

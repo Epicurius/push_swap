@@ -6,11 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:09:56 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 20:35:01 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 17:06:26 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualizer.h"
+#include "visualiser.h"
 
 void	update_screen(t_stack *stc)
 {
@@ -32,10 +32,10 @@ void	keys(t_stack *stc, SDL_Event *event)
 			|| event->key.keysym.sym == SDLK_ESCAPE)
 			stc->quit = 1;
 		else if (event->key.keysym.sym == SDLK_f
-				&& stc->pause == 1 && stc->i < stc->moves - 1)
+			&& stc->pause == 1 && stc->i < stc->moves - 1)
 			move_forward(stc);
 		else if (event->key.keysym.sym == SDLK_r
-				&& stc->pause == 1 && stc->i > 0)
+			&& stc->pause == 1 && stc->i > 0)
 			move_reverse(stc);
 		else if (event->key.keysym.sym == SDLK_p)
 			stc->pause = stc->pause == 0;
@@ -44,13 +44,13 @@ void	keys(t_stack *stc, SDL_Event *event)
 
 void	init_sdl(t_stack *stc)
 {
-	SDL_DisplayMode dm;
+	SDL_DisplayMode	dm;
 
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 		error_msg("Could not init SDL: %s\n", SDL_GetError());
 	SDL_GetCurrentDisplayMode(0, &dm);
 	if (dm.w <= stc->w || dm.h <= stc->h)
-		error_msg("To many values ot to llarge values");
+		error_msg("To many values or to large values");
 	if (TTF_Init())
 		error_msg("Could not init TTF: %s\n", SDL_GetError());
 	stc->win = SDL_CreateWindow("Visualiser", SDL_WINDOWPOS_CENTERED,

@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:10:51 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/01 16:48:02 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 15:25:51 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	t_stack	*stc;
 
 	if (ac <= 1)
-		ft_printf("{RED}[ERROR]{RESET}\n");
+		return (0);
 	stc = ft_memalloc(sizeof(t_stack));
 	if (!read_input(ac, av, stc))
 		ft_printf("{RED}[ERROR]{RESET}\n");
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 		if (is_sorted(stc->a, stc->size_a))
 			ft_printf("{GREEN}[OK]{RESET} Moves:%d\n", stc->moves);
 		else
-			ft_printf("{ORANGE}[KO]{RESET}\n");
+			ft_printf("{RED}[KO]{RESET}\n");
 	}
 	if (stc->a)
 		free(stc->a);

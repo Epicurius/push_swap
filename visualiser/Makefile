@@ -6,7 +6,7 @@
 #    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/29 14:37:29 by nneronin          #+#    #+#              #
-#    Updated: 2021/06/01 20:33:36 by nneronin         ###   ########.fr        #
+#    Updated: 2021/06/04 16:36:00 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MAGENTA			:= "\e[0;35m"
 CYAN			:= "\e[0;36m"
 RESET			:= "\e[0m"
 
-NAME			= visualizer
+NAME			= visualiser
 
 SDL_DIR			:= ./SDL
 SDL_MAIN		:= -I $(SDL_DIR)/SDL2.framework/Headers -framework SDL2 -F $(SDL_DIR)
@@ -34,6 +34,7 @@ LIBS			+= $(SDL_MAIN) $(SDL_TTF) $(LIBFT) $(LIBPF)
 CFLAGS			:= -Wall -Wextra -Werror
 
 SRCS =	./main.c\
+		./read_input.c\
 		./error_msg.c\
 		./draw.c\
 		./moves.c\
@@ -46,8 +47,10 @@ SRCS =	./main.c\
 OBJ = $(SRCS:.c=.o)
 
 all: framework libs $(NAME)
+	@printf $(GREEN)"$(NAME) ready!\n"$(RESET)
 
 $(NAME):
+	@printf $(CYAN)"[INFO]	Compiling $(NAME)\n"$(RESET)
 	@gcc -o $(NAME) $(SRCS) $(LIBS)
 
 libs: $(LIB_DIR)

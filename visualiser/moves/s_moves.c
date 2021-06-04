@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sa.c                                               :+:      :+:    :+:   */
+/*   s_moves.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:41:43 by nneronin          #+#    #+#             */
-/*   Updated: 2020/03/05 15:26:45 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 16:16:20 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../visualizer.h"
+#include "../visualiser.h"
 
-void		sa(t_stack *stc)
+void	sa(t_stack *stc)
 {
-	int tmp;
+	int	tmp;
 
 	if (stc->size_a < 1)
 		return ;
@@ -23,9 +23,9 @@ void		sa(t_stack *stc)
 	stc->a[stc->size_a - 1] = tmp;
 }
 
-void		sb(t_stack *stc)
+void	sb(t_stack *stc)
 {
-	int tmp;
+	int	tmp;
 
 	if (stc->size_b < 1)
 		return ;
@@ -34,7 +34,7 @@ void		sb(t_stack *stc)
 	stc->b[stc->size_b - 1] = tmp;
 }
 
-void		ss(t_stack *stc)
+void	ss(t_stack *stc)
 {
 	if (stc->size_a > 0)
 		sa(stc);
