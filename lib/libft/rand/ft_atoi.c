@@ -6,7 +6,7 @@
 /*   By: nneronin <nneronin@stuent.hive.fi>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:26:46 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 14:58:38 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/06/04 17:18:29 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	ft_atoi(const char *str)
 	return (neg * res);
 }
 
-long ft_latoi(const char *str)
+long	ft_latoi(const char *str)
 {
-	long res;
-	int	i;
-	int	neg;
+	long	res;
+	int		i;
+	int		neg;
 
 	res = 0;
 	i = 0;
