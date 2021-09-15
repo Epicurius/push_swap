@@ -1,43 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_moves.c                                          :+:      :+:    :+:   */
+/*   r_moves.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 14:41:43 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 16:16:20 by nneronin         ###   ########.fr       */
+/*   Created: 2020/02/24 19:13:21 by nneronin          #+#    #+#             */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../visualiser.h"
+#include "../visualizer.h"
 
-void	sa(t_stack *stc)
+void	rra(t_stack *stc)
 {
+	int	x;
+	int	y;
 	int	tmp;
 
-	if (stc->size_a < 1)
-		return ;
-	tmp = stc->a[stc->size_a];
-	stc->a[stc->size_a] = stc->a[stc->size_a - 1];
-	stc->a[stc->size_a - 1] = tmp;
+	x = -1;
+	y = stc->size_a;
+	tmp = stc->a[0];
+	while (x++ < y)
+		stc->a[x] = stc->a[x + 1];
+	stc->a[stc->size_a] = tmp;
 }
 
-void	sb(t_stack *stc)
+void	rrb(t_stack *stc)
 {
+	int	x;
+	int	y;
 	int	tmp;
 
-	if (stc->size_b < 1)
-		return ;
-	tmp = stc->b[stc->size_b];
-	stc->b[stc->size_b] = stc->b[stc->size_b - 1];
-	stc->b[stc->size_b - 1] = tmp;
+	x = -1;
+	y = stc->size_b;
+	tmp = stc->b[0];
+	while (x++ < y)
+		stc->b[x] = stc->b[x + 1];
+	stc->b[stc->size_b] = tmp;
 }
 
-void	ss(t_stack *stc)
+void	rr(t_stack *stc)
 {
 	if (stc->size_a > 0)
-		sa(stc);
+		ra(stc);
 	if (stc->size_b > 0)
-		sb(stc);
+		rb(stc);
 }

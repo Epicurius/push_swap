@@ -6,7 +6,7 @@
 #    By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/29 14:37:29 by nneronin          #+#    #+#              #
-#    Updated: 2021/06/04 16:36:00 by nneronin         ###   ########.fr        #
+#    Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MAGENTA			:= "\e[0;35m"
 CYAN			:= "\e[0;36m"
 RESET			:= "\e[0m"
 
-NAME			= visualiser
+NAME			= visualizer
 
 SDL_DIR			:= ./SDL
 SDL_MAIN		:= -I $(SDL_DIR)/SDL2.framework/Headers -framework SDL2 -F $(SDL_DIR)

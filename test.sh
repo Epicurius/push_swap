@@ -16,14 +16,3 @@ echo "600 values:"
 ARG=`ruby -e "puts (1..600).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
 echo "700 values:"
 ARG=`ruby -e "puts (1..700).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-echo "Rand Tests:"
-ARG=`ruby -e "puts (1..234).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1..15).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1..45).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1..364).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1..4).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1..9).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (1134513..1134600).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (500..700).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (666..700).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG
-ARG=`ruby -e "puts (500..700).to_a.shuffle.join(' ')"` ; ./push_swap/push_swap $ARG | ./checker/checker $ARG

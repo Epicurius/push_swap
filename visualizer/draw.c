@@ -6,11 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:40:20 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 16:18:54 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualiser.h"
+#include "visualizer.h"
 
 int	color(int i, float amount)
 {

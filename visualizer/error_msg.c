@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_moves.c                                          :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 17:11:26 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 16:14:52 by nneronin         ###   ########.fr       */
+/*   Created: 2021/06/01 17:27:54 by nneronin          #+#    #+#             */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../visualiser.h"
+#include "visualizer.h"
 
-void	pa(t_stack *stc)
+void	error_msg(const char *restrict format, ...)
 {
-	if (stc->size_b < 0)
-		return ;
-	stc->size_a += 1;
-	stc->a[stc->size_a] = stc->b[stc->size_b];
-	stc->b[stc->size_b] = 0;
-	stc->size_b -= 1;
-}
+	t_pf	p;
+	char	buff[PF_BUFF_SIZE];
 
-void	pb(t_stack *stc)
-{
-	if (stc->size_a < 0)
-		return ;
-	stc->size_b += 1;
-	stc->b[stc->size_b] = stc->a[stc->size_a];
-	stc->a[stc->size_a] = 0;
-	stc->size_a -= 1;
+	write(1, "\x1b[31m[ERROR]\x1b[00m", 17);
+	if (format)
+	{
+		write(1, "\t", 1);
+		pf_init(&p, 1);
+		p.buffer = buff;
+		va_start(p.ap, format);
+		pf_read_format((char *)format, &p);
+		write(p.fd, p.buffer, p.chars);
+		va_end(p.ap);
+	}
+	else
+		write(1, "\n", 1);
+	exit(1);
 }

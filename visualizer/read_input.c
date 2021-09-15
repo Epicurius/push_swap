@@ -6,11 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:19:15 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 17:07:56 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualiser.h"
+#include "visualizer.h"
 
 int	find(char *str)
 {

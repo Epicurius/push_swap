@@ -1,49 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_moves.c                                          :+:      :+:    :+:   */
+/*   rr_moves.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 19:13:21 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 16:16:45 by nneronin         ###   ########.fr       */
+/*   Created: 2020/02/24 19:12:21 by nneronin          #+#    #+#             */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../visualiser.h"
+#include "../visualizer.h"
 
-void	rra(t_stack *stc)
+void	ra(t_stack *stc)
 {
-	int	x;
 	int	y;
 	int	tmp;
 
-	x = -1;
 	y = stc->size_a;
-	tmp = stc->a[0];
-	while (x++ < y)
-		stc->a[x] = stc->a[x + 1];
-	stc->a[stc->size_a] = tmp;
+	tmp = stc->a[y];
+	while (y--)
+		stc->a[y + 1] = stc->a[y];
+	stc->a[0] = tmp;
 }
 
-void	rrb(t_stack *stc)
+void	rb(t_stack *stc)
 {
-	int	x;
 	int	y;
 	int	tmp;
 
-	x = -1;
 	y = stc->size_b;
-	tmp = stc->b[0];
-	while (x++ < y)
-		stc->b[x] = stc->b[x + 1];
-	stc->b[stc->size_b] = tmp;
+	tmp = stc->b[y];
+	while (y--)
+		stc->b[y + 1] = stc->b[y];
+	stc->b[0] = tmp;
 }
 
-void	rr(t_stack *stc)
+void	rrr(t_stack *stc)
 {
 	if (stc->size_a > 0)
-		ra(stc);
+		rra(stc);
 	if (stc->size_b > 0)
-		rb(stc);
+		rrb(stc);
 }

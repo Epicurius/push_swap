@@ -6,11 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:07:40 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 17:05:32 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualiser.h"
+#include "visualizer.h"
 
 int	ft_isnum(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: nneronin <nneronin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:09:56 by nneronin          #+#    #+#             */
-/*   Updated: 2021/06/04 17:06:26 by nneronin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:41:12 by nneronin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualiser.h"
+#include "visualizer.h"
 
 void	update_screen(t_stack *stc)
 {
@@ -53,7 +53,7 @@ void	init_sdl(t_stack *stc)
 		error_msg("To many values or to large values");
 	if (TTF_Init())
 		error_msg("Could not init TTF: %s\n", SDL_GetError());
-	stc->win = SDL_CreateWindow("Visualiser", SDL_WINDOWPOS_CENTERED,
+	stc->win = SDL_CreateWindow("visualizer", SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, stc->w, stc->h, SDL_WINDOW_ALWAYS_ON_TOP);
 	if (!stc->win)
 		error_msg("Could not create window: %s\n", SDL_GetError());
