@@ -10,18 +10,38 @@ Then I move the lowest values (1-5) to B stack and any higher values (6-10) move
 When all lower values are moved to B stack I split B (5 / 2) stack and move the highest (4-5)<br>
 on top of A stack and the lowest (1-3) to the bottom of A stack in ascending order, until B stack is empty.<br>
 Then split the values that are not in order in A stack in half repeated the cycle.<br>
-
+```
+I have the following operations at my disposal:
+	sa : swap a - swap the first 2 elements at the top of stack a.
+	sb : swap b - swap the first 2 elements at the top of stack b.
+	ss : sa and sb at the same time.
+	pa : push a - take the first element at the top of b and put it at the top of a.
+	pb : push b - take the first element at the top of a and put it at the top of b.
+	ra : rotate a - shift up all elements of stack a by 1. The first element becomes
+			the last one.
+	rb : rotate b - shift up all elements of stack b by 1. The first element becomes
+			the last one.
+	rr : ra and rb at the same time.
+	rra : reverse rotate a - shift down all elements of stack a by 1. The last element
+			becomes the first one.
+	rrb : reverse rotate b - shift down all elements of stack b by 1. The last element
+			becomes the first one.
+	rrr : rra and rrb at the same time
+```
 A much simpler algorithm is used in situation with less than 10 values.
+
+------
 
 ## Checker
 Checker is a program that checks if the value given are correct and if push_swap sorted them correctly.
 
+-----
 ## Visualizer (only for mac)
 Visualizes the individual moves taken to sort stack A.
  *	P - pause/unpause
  *	F - One move forwards, must be paused
  *	R	- Reverse one move, must be paused.
-
+-------
 <img src=/images/output.gif width="400"><rb>
 ## Use
 ```sh
